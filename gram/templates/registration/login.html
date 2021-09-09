@@ -4,46 +4,63 @@
 <div class="container">
   <div class="row">
     <!-- Empty div -->
-    <div class="col-md-5 phones" >
-       
+    <div class="col-md-5 phones">
+      <img src="../../../static/images/phones.png" alt="">
     </div>
-    <div class="col-md-5 panel-form" >
+    <div class="col-md-5 panel-form">
       {% if form.errors %}
-        <p> Password or Username is incorrect </p>
+      <p> Password or Username is incorrect </p>
       {% endif %}
-      <div class="panel panel-default">
+      <div class="card mt-4">
 
-        <div class="panel-heading">
+        <div class="card-header bg-white">
           <h3 class="text-center">
-              <img src="../../static/images/instalogo.png" class="logo" alt="">
+            <img src="../../static/images/label.png" class="logo" alt="" width="250" height="100">
           </h3>
         </div>
-        <div class="panel-body">
-
-          <form  action="/accounts/login/" method="post">
+        <div class="card-body">
+          <form action="" method="post">
             {% csrf_token %}
-            {% bootstrap_form form%}
-
-            <div class="form-group" style=" width: 100%;">
-                <input type="submit" class="btn btn-primary " value="Login"  style="align-items: center; width: 100%;" >
+            <div class="info">
+              <div class="form-floating mb-3 info">
+                <input type="text" name="username" class="form-control email" id="floatingInput"
+                  placeholder="Email or Username">
+                <label for="floatingInput">Email address or Phone number</label>
+              </div>
+              <div class="form-floating info">
+                <input type="password" name="password" class="form-control email" id="floatingPassword"
+                  placeholder="Password">
+                <label for="floatingPassword">Password</label>
+              </div>
             </div>
-              
-            
-
-            <input type="hidden" name="next" value="{{next}}">
-
+            <div class="card-footer">
+              <div class="d-grid gap-1">
+                <button class=" btn btn-primary" type="submit">Sign In</button>
+              </div>
+            </div>
+            <div class="help">
+              <div>
+                <input class="form-check-input" type="checkbox" value="True" id="flexCheckDefault">
+                <label class="form-check-label" for="flexCheckDefault">
+                  Remember Me
+                </label>
+              </div>
+            </div>
           </form>
-          <div class="sign-up">
-            Don't have an account?  <a href="/accounts/register/" class="ml-2">Sign Up</a>
+          <div class="card-footer">
+            <div class="sign-up">
+              Don't have an account? <a href="/register" class="ml-2">Sign Up</a>
+            </div>
+          </div>
         </div>
-
-        </div>
-
       </div>
-
+      <p class="text-center mt-3" >Get the app.</p>
+      <div class="sponsors d-flex ">
+        <a href=""><img src="../../../static/images/apple.png" alt="" width='220' height='70'></a>
+        <a href=""><img src="../../../static/images/googleplay.png" alt="" width='220' height='70'></a>
+      </div> 
     </div>
-    <!-- empty div -->
-    <!-- <div class="col-md-6"></div> -->
+
   </div>
 </div>
 
