@@ -19,5 +19,6 @@ from django.conf.urls import include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('',include('gram.urls'))
+    path('accounts/', include('registration.backends.simple.urls')),
+    path('',include('gram.urls')),
 ]
