@@ -1,0 +1,66 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <!-- Empty div -->
+    <div class="col-md-6 mt-4">
+      <img src="../../../static/images/phones.png" alt="">
+    </div>
+    <div class="col-md-6" style="padding-top: 3%;">
+      {% if form.errors %}
+        <p> Some Information Might be Incorrect </p>
+      {% endif %}
+      <div class="card mt-4">
+        <div class="card-header">
+            <h4 class="text-center .logo">
+                <img src="../../static/images/label.png" class="logo" alt="" width="300" height="100">
+            </h4>
+        </div>
+        <div class="card-body">
+          <h5 class="text-center"><cite>Sign up to see photos and videos from your friends</cite></h5>
+          <form action="" method="post">
+            {% csrf_token %}
+            <div class="form-group info">
+              <div class="form-floating mb-3 info">
+                {{ rgf.first_name }}
+                <label for="floatingInput">First Name</label>
+              </div>
+              <div class="form-floating mb-3 info">
+                {{ rgf.last_name }}
+                <label for="floatingInput">Last Name</label>
+              </div>
+              <div class="form-floating mb-3 info">
+                {{ rgf.username }}
+                <label for="floatingInput">Username</label>
+              </div>
+              <div class="form-floating mb-3 info">
+                {{ rgf.email }}
+                <label for="floatingInput">Email Address</label>
+              </div>
+              <div class="form-control mb-3 info">
+                {{ rgf.password1 }}
+                <label for="floatingInput">Password</label>
+              </div>
+              <div class="form-control mb-3 info">
+                {{ rgf.password2 }}
+                <label for="floatingInput">Confirm Password</label>
+              </div>
+            </div>
+            <div class=" d-grid gap-1">
+              <button class="btn btn-primary" type="submit">Sign Up</button>
+            </div> 
+          <input type="hidden" name="next" value="{{next}}">
+          </form>
+        </div>
+        <div class="card-footer">
+          <p>Already have an account?
+            <a href="/">Login</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
