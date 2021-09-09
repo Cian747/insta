@@ -1,0 +1,5 @@
+virtual/
+notes.txt
+*.pyc
+page.html
+.env
