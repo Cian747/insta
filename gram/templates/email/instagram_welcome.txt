@@ -1,0 +1,3 @@
+Hello {{name}}
+
+Welcome to the InstalClone. You will have an experience like that of the popular instagram app.
