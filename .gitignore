@@ -3,3 +3,4 @@ notes.txt
 *.pyc
 page.html
 .env
+.vscode
