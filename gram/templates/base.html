@@ -6,6 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/css/bootstrap.min.css"
@@ -14,11 +15,18 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
     />
+    <link rel="icon" href="../../static/images/instagram (2).png" type="image/x-icon">
     {% endblock %}
+    {% if title %}
+    <title>{{ title }}</title>
+    {% else %}
     <title>Instagram</title>
+    {% endif %}
   </head>
   <body>
+    {% block navbar %}
     {% include 'navbar.html' %}
+    {% endblock %}
     <div class="container-fluid" >
         {% block content %}
         {% endblock %}
@@ -32,6 +40,8 @@
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.0.0-beta1/js/bootstrap.min.js"
     ></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+    <script src="{% static 'js/scripts.js' %}"></script>
     {% endblock %}
   </body>
 </html>
