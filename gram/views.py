@@ -122,8 +122,7 @@ def imagedetails(request,id):
             
 # For like you could pull up a modal that generates the like
 def LikeView(request,pk):
-    image_post = get_object_or_404(Image, id=request.POST.get('post_id'))
-    print(image_post)
+    image_post = get_object_or_404(Image, pk=request.POST.get('post_id'))
     image_post.likes.add(request.user)
     return redirect(request.META.get('HTTP_REFERER'))
 
@@ -153,7 +152,6 @@ def user_profile(request,id):
     user_profile_images = Image.objects.filter(profile = id).all()
 
     current_user = request.user.id
-    print(current_user)
 
     my_profile = Profile.objects.get(user =request.user)
     if user_profile.user in my_profile.following.all():

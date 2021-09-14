@@ -11,7 +11,7 @@ body{
 .container-fluid{
     background-color: #E5E7E6;
     padding: 2px;
-    /* height: 100vh;   */
+    height: auto;  
 }
 
 .fa-comment{
@@ -204,7 +204,7 @@ img {
 .card{
 
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    padding: 10px;
+    /* padding: 10px; */
     margin: 1rem;
     background-color:#FFF9EC;
     text-decoration: none;

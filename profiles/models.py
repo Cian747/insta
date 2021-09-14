@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 
@@ -9,7 +11,7 @@ class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     following = models.ManyToManyField(User,related_name='following', blank=True)
     bio = models.TextField(default="Hi I'm new here")
-    profile_photo = models.ImageField(upload_to='images/',blank=True,null=True, default="/media/images/joni-rajala-1qJh1aORn_Q-unsplash.jpg")
+    profile_photo = CloudinaryField('images/',blank=True,null=True, default="/media/images/joni-rajala-1qJh1aORn_Q-unsplash.jpg")
     updated = models.DateTimeField(auto_now=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

@@ -3,11 +3,13 @@ from django.contrib.auth.models import User
 import datetime
 from django.urls import reverse
 from profiles.models import Profile
+from cloudinary.models import CloudinaryField
+
 
 # Create your models here.
 
 class Image(models.Model):
-    image = models.ImageField(upload_to='images/')
+    image = CloudinaryField('images/')
     image_name = models.CharField(max_length=255)
     image_caption = models.TextField()
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE)
