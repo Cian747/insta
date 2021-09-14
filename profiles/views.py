@@ -16,6 +16,7 @@ def follow_unfollow_profile(request):
             my_profile.save()
         else:
             my_profile.following.add(obj.user)
+        
         return redirect(request.META.get('HTTP_REFERER'))
 
     return redirect('profile')

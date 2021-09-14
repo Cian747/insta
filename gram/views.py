@@ -57,10 +57,7 @@ class ProfileUpdateView(UpdateView):
     template_name = 'profile/edit-profile.html'
 
     def get_queryset(self): 
-        return Image.objects.all()
-
-def update_profile(request):
-    user = request.user
+        return Profile.objects.all()
 
 
 def posts_of_following_profiles(request):
@@ -80,11 +77,13 @@ def posts_of_following_profiles(request):
     my_posts = profile.image_posts()
     posts.append(my_posts)
 
+    user = request.user
+
     # sort and chain querysets and unpack the posts lists
     if len(posts)>0:
         qs = sorted(chain(*posts), reverse=True, key=lambda obj:obj.created)
 
-    return render(request,'posts/index.html',{"profile":profile,"posts":qs})
+    return render(request,'posts/index.html',{"profile":profile,"posts":qs,"user":user})
 
 
 def edit_profile(request,id):
@@ -124,6 +123,7 @@ def imagedetails(request,id):
 # For like you could pull up a modal that generates the like
 def LikeView(request,pk):
     image_post = get_object_or_404(Image, id=request.POST.get('post_id'))
+    print(image_post)
     image_post.likes.add(request.user)
     return redirect(request.META.get('HTTP_REFERER'))
 

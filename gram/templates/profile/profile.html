@@ -1,0 +1,118 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="user-profile">
+	<header>
+		<div class="container mt-5">
+			<!-- Modal -->
+			<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+				aria-hidden="true">
+				<div class="modal-dialog">
+					<div class="modal-content">
+						<div class="modal-header">
+							<h5 class="modal-title" id="exampleModalLabel">Follow {{ profile.user.username }}</h5>
+							<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						</div>
+						<div class="modal-body">
+							<form action="{% url 'follow-unfollow-view' %}" method="POST">
+								{% csrf_token %}
+								<input type="hidden" name="profile_pk" value="{{ profile.pk }}">
+								<button type="submit" class="btn btn-outline-success">
+									<i class="fas fa-user-plus"></i>
+									Yes
+								</button>
+							</form>
+						</div>
+						<div class="modal-footer">
+							<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+							<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="profile">
+				<div class="row">
+					<div class="col-md-4 p-1">
+						<div class="profile-image">
+							{% if profile.profile_photo.url %}
+							<!-- <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces" alt=""> -->
+							<img src="{{ profile.profile_photo.url }}" alt="" width="250rem" height="250rem">
+							{% else %}
+							<img src='https://avataaars.io/?avatarStyle=Circle&topType=WinterHat3&accessoriesType=Round&hatColor=Gray02&facialHairType=MoustacheMagnum&facialHairColor=Red&clotheType=BlazerShirt&eyeType=Wink&eyebrowType=Angry&mouthType=Twinkle&skinColor=Black'
+								width="250rem" height="250rem" />
+							{% endif %}
+						</div>
+					</div>
+					<div class="col-md-8 p-1">
+						<div class="profile-user-settings">
+							<h1 class="profile-user-name" style="font-family: 'Lobster', cursive;">{{profile.user.username }}</h1>
+							{% if current_user == profile.user.id %}
+							<a href="{% url 'edit_profile' profile.pk %}"><button
+									class="btn profile-edit-btn btn-secondary">Edit Profile</button></a>
+							<button class="btn profile-settings-btn " aria-label="profile settings"><i
+									class="fas fa-cog" aria-hidden="true"></i></button>
+							<a name="" id="" class="btn btn-dark" href="{% url 'post_image' %}" role="button">Make a
+								Post</a>
+							{% else %}
+							{% endif %}
+							{% if follow %}
+							<form action="{% url 'follow-unfollow-view' %}" method="post">
+								{% csrf_token %}
+								<input type="hidden" name="profile_pk" value="{{ profile.pk }}">
+								<button type="submit" class="btn btn-danger">Unfollow</button>
+							</form>
+							{% else %}
+							<button type="button" class="btn btn-success" data-bs-toggle="modal"
+								data-bs-target="#exampleModal">
+								Follow
+							</button>
+							{% endif %}
+						</div>
+
+						<div class="profile-stats">
+							<ul>
+								<li><span class="profile-stat-count">{{ images.count }}</span> posts</li>
+								<li><span class="profile-stat-count">188</span> followers</li>
+								<li><span class="profile-stat-count">{{ profile.following.count }}</span> following
+								</li>
+							</ul>
+						</div>
+						<div class="profile-bio">
+							<p><span>{{ profile.user.first_name }} {{ profile.user.last_name }}</span></p>
+							<p><span class="profile-real-name"> {{ profile.bio }}</span> 📷✈️🏕️</p>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- End of profile section -->
+
+		</div>	<!-- End of container -->
+
+	</header>
+	<hr>
+	<main class="container">
+		<div class="row">
+			{% for image in images %}
+			<div class="col-md-4 ">
+				<div class="profile-images">
+					<a href="{% url 'image_detail' image.id %}">
+						<img src="{{ image.image.url }}" alt="" width="100%" height="100%">
+					</a>
+					<h4 class="p-1" style="text-decoration: none; color:black; font-size:large;">{{ image.image_name}}
+					</h4>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</main>
+</div>
+</div>
+
+
+{% endblock %}
+
+<!-- {% include 'modals.html' %} -->
+<!-- data-bs-toggle="modal" data-bs-target="#model{{ profile.id }}" -->
+<!-- {% url 'edit_profile' profile.pk %} -->

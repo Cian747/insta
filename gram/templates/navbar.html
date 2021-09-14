@@ -4,23 +4,27 @@
 {% endblock %}
 <div class="navigation">
     <div class="logo">
-      <a class="no-underline" href="#">
+      <a class="no-underline" href="{% url 'index' %}">
         Instagram
       </a>
     </div>
     <div class="navigation-search-container">
-      <i class="fa fa-search"></i>
-      <input class="search-field" type="text" placeholder="Search">
+      <form action="{% url 'search_term' %}" role="search">
+        {% csrf_token %}
+        <input class="search-field" type="search" name="user" placeholder="Search">
+        <button type="submit" class="btn btn-default">
+          <i class="fas fa-search"></i>     
+        </button>
+      </form>
       <div class="search-container">
         <div class="search-container-box">
           <div class="search-results">
-  
           </div>
         </div>
       </div>
     </div>
     <div class="navigation-icons">
-      <a href="https://instagram.com/mimoudix" target ="_blank" class="navigation-link">
+      <a href="{% url 'post_image' %}" class="navigation-link">
         <i class="fas fa-plus-circle"></i>   
         </a>
       <a class="navigation-link notifica">
@@ -32,15 +36,12 @@
           </div>
         </i>
       </a>
-      <a href="https://instagram.com/mimoudix" class="navigation-link">
+      <a href="{% url 'profile_list' %}" class="navigation-link">
         <i class="far fa-user-circle"></i>
       </a>
-      <a href="https://instagram.com/mimoudix" id="signout" class="navigation-link">
+      <a href="{% url 'logout' %}" id="signout" class="navigation-link">
         <i class="fas fa-sign-out-alt"></i>
       </a>
     </div>
   </div>
   
-  <!-- scroll down test--->
-  <!-- <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> -->
-  <!-- scroll down test--->

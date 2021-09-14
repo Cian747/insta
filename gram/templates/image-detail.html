@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+    <div class="details">
+        <div class="row">
+            <div class="col-md-7">
+                <img src="{{ object.image.url }}" alt="" width="100%" height="100%">
+            </div>
+            <div class="col-md-5">
+                <div class="card-header">
+                <p class="fs-3" style="text-decoration:underline;"><strong>{{ object.image_name }}</strong></p>
+                </div>
+                <p>{{ object.image_caption }}</p>
+                <cite>{{ object.posted_date }}</cite>
+                <br>
+                <form action="{% url 'like_post' object.pk %}" method="POST">
+                    {% csrf_token %}
+                    {% if user in object.likes.all %}
+                        <button type="submit" name="post_id" class="btn btn-lg btn-danger"  value= "{{ object.id }}">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    {{ total_likes }} - likes
+                    {% else %}
+                    <button type="submit" name="post_id" class="btn btn-lg" value= "{{ object.id }}">
+                        <i class="far fa-heart"></i>
+                    </button>
+                    {{ total_likes }} - likes
+
+                    {% endif %}
+                </form>
+                <br>
+                <form action="" method="post">
+                    {% csrf_token %}
+                    {{ com_form.as_p }}
+                    {{ com_form.errors }}
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </form>
+                <hr>
+                <div class="card-footer">
+                <h5>Comments</h5>
+                {% for comment in comments %}
+                
+                <p class="d-flex">
+                    <!-- <span><img src='https://avataaars.io/?avatarStyle=Circle&topType=WinterHat2&accessoriesType=Blank&hatColor=PastelGreen&facialHairType=MoustacheMagnum&facialHairColor=Black&clotheType=GraphicShirt&clotheColor=Blue02&graphicType=Skull&eyeType=WinkWacky&eyebrowType=DefaultNatural&mouthType=ScreamOpen&skinColor=Black'
+                        height="40px" width="40px"/></span> -->
+                        <span><img src='{{ object.profile.profile_photo.url }}'
+                            height="40px" width="40px" style="border-radius: 50px; margin:1px;" /></span>
+                    <span class="ml-1">
+                        <strong>{{ comment.user_id.username }}-</strong>
+                    </span> 
+                    {{ comment.comment }}
+                </p>
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+
+{% endblock %}

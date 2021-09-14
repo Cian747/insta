@@ -1,5 +1,4 @@
 {%extends "registration/base.html"%}
-
 {% block content %}
 <div class="container">
   <div class="row">
@@ -18,6 +17,7 @@
             </h4>
         </div>
         <div class="card-body">
+          {{rgf.errors }}
           <h5 class="text-center"><cite>Sign up to see photos and videos from your friends</cite></h5>
           <form action="" method="post">
             {% csrf_token %}

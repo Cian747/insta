@@ -29,7 +29,7 @@ class Profile(models.Model):
         ordering = ['-created_at']
 
     def get_absolute_url(self):
-        return reverse('profile',args=str([self.id]))
+        return reverse('profile',args=(str(self.id)))
 
     @classmethod
     def search_by_user(cls,search_term):

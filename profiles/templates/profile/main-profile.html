@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+<div class="container">
+
+    {% for profile in profiles %}
+    <div class="profiles mt-5" style="margin-top: 8rem;">
+        <div class="card p-3 bg-dark d-flex justify-content-center">
+            <img src="{{ profile.profile_photo.url }}" height="40" width="40"
+            style="border-radius: 50px;" alt="">
+            <p class="fs-5" style="color:blanchedalmond">{{ profile.user.username }}</p>
+            <br>
+            <a href="{% url 'profile-detail' profile.pk %}"><button class="btn btn-primary ui primary button" >See profile</button></a>
+        </div>
+    </div>
+
+    {% endfor %}
+
+</div>
+
+{% endblock %}
+
+

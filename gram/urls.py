@@ -16,7 +16,7 @@ urlpatterns = [
     path('image_detail/<int:id>',views.imagedetails,name='image_detail'),
     path('post/',views.post,name = 'post_image'),
     path('like/<int:pk>',views.LikeView,name='like_post'),
-    path('edit-profile/<int:id>',views.edit_profile,name='edit_profile'),
+    url(r'^profile/edit/(?P<pk>\d+)',ProfileUpdateView.as_view(),name='edit_profile'),
     path('search/',views.search_for_user,name="search_term")
     # path('comment/<int:pk>',views.comment, name="comment"),
 ]
