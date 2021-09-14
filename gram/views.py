@@ -21,7 +21,7 @@ def register_user(request):
             rgf.save()
             user = rgf.cleaned_data.get('username')
             email = rgf.cleaned_data.get('email')
-            send_welcome_email(user,email)
+            # send_welcome_email(user,email)
             messages.success(request, 'Account was created for ' + user)
             return redirect('login_user')
     
