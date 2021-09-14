@@ -31,6 +31,9 @@
                             </button>
 
                             {% endif %}
+                            <a name="" id="comment" class="btn btn-link" href="{% url 'image_detail' image.id %}" role="button">
+                                <i class="far fa-comment"></i>
+                            </a>
                         </div>
                         {{ image.likes.count }} - likes
                         <cite>{{ image.posted_date }}</cite>
@@ -38,11 +41,6 @@
                         <p>{{ image.image_caption }}</p>
                         <a href="{% url 'image_detail' image.id %}">See full details</a>
                         <hr>
-                        <!-- <button type="button" class="btn btn-primary btn-lg" data-bs-toggle="modal" data-bs-target="#model{{ image.id }}">
-                            Edit
-                          </button> -->
-                        <!-- <h6>Comments</h6>
-                        <p>{{ image.comments.comment }}</p> -->
                     </div>
 
                 </div>
@@ -58,8 +56,14 @@
                     <p style="font-family: billabong, sans-serif;">
                         <a href="{% url 'profile' profile.id %}">
                             <h4 class="mt-2"><strong>{{ profile }}</strong></h4>
-                        </a>    
+                        </a>
                     </p>
+                    {% if profile.profile_photo.url %}
+                    {% else %}
+                    <strong>Hello there! Edit your profile for optimal user experience</strong>
+                    <a href="{% url 'edit_profile' profile.pk %}"><button
+                        class="btn profile-edit-btn btn-secondary">Edit Profile</button></a>  
+                    {% endif %}
                     <h1  style="font-family: billabong, sans-serif;">Suggestions for you:</h1>
                     <br>
                     <a href="{% url 'profile_list' %}">
