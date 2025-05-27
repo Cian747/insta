@@ -1,7 +1,7 @@
 from django.urls import path
 from .views import HomeView,PostImageView,LikeView,ProfileUpdateView, edit_profile,posts_of_following_profiles
 from . import views
-from django.conf.urls import url
+from django.urls import re_path as url
 from django.conf import settings
 from django.conf.urls.static import static
 
@@ -16,7 +16,7 @@ urlpatterns = [
     path('image_detail/<int:id>',views.imagedetails,name='image_detail'),
     path('post/',views.post,name = 'post_image'),
     path('like/<int:pk>',views.LikeView,name='like_post'),
-    url(r'^profile/edit/(?P<pk>\d+)',ProfileUpdateView.as_view(),name='edit_profile'),
+    url(r'profile/edit/(?P<pk>\d+)',ProfileUpdateView.as_view(),name='edit_profile'),
     path('search/',views.search_for_user,name="search_term")
     # path('comment/<int:pk>',views.comment, name="comment"),
 ]
