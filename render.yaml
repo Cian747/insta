@@ -2,7 +2,7 @@ databases:
   - name: insta
     plan: free
     databaseName: insta
-    user: postgres
+    user: insta
 
 services:
   - type: web
